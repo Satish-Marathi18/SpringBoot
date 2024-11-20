@@ -3,8 +3,6 @@ package com.example.employeemanagement.service;
 import com.example.employeemanagement.entity.Employee;
 import com.example.employeemanagement.repository.EmployeeRepository;
 import org.springframework.stereotype.Service;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
 
 import java.util.List;
 
@@ -29,6 +27,11 @@ public class EmployeeServiceImpl implements EmployeeService {
     @Override
     public Employee getEmployeeById(long id) {
         return employeeRepository.findById(id).orElseThrow(() -> new RuntimeException("Employee not found"));
+    }
+
+    @Override
+    public List<Employee> getEmployeeByFName(String firstName) {
+        return employeeRepository.findByfName(firstName);
     }
 
     @Override

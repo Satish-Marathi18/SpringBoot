@@ -3,6 +3,8 @@ package com.example.employeemanagement.controller;
 import com.example.employeemanagement.entity.Employee;
 import com.example.employeemanagement.service.EmployeeService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -25,6 +27,11 @@ public class EmployeeController {
     @GetMapping("/getbyid/{id}")
     public Employee getEmployeeById(@PathVariable long id) {
         return employeeService.getEmployeeById(id);
+    }
+
+    @GetMapping("/getbyfname/{fName}")
+    public ResponseEntity<List<Employee>> getEmployeeByFName(@PathVariable String fName) {
+        return new ResponseEntity<>(employeeService.getEmployeeByFName(fName), HttpStatus.ACCEPTED);
     }
 
     @PutMapping("/update/{id}")
